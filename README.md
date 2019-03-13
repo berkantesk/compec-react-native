@@ -14,3 +14,6 @@ React Native Environments
 - Npm 6.4.1
 - react-native-cli: 2.0.1
 - xcode 10.1 (only Mac)
+
+
+Slack Group: https://compec-react.slack.com/
