@@ -8,7 +8,10 @@ const ProfilesContainer = styled(Container)``;
 
 const Screen = (props) => (
   <ProfilesContainer>
-    <Navbar title="Compec Profiles" />
+    <Navbar 
+      title="Compec Profiles" 
+      hasBackButton={props.hasBackButton}
+    />
     <Content>
       {props.children}
     </Content>

@@ -9,7 +9,7 @@ const Login = () => {
   );
 
   return (
-    <Screen>
+    <Screen hasBackButton={false}>
       <Text>LOGIN MODULE</Text>
       <Button onPress={handleGoHome}>
         <Text>Go HOME</Text>
