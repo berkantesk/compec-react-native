@@ -1,5 +1,5 @@
 export const fetchPosts = () => (
-  fetch('https://uinames.com/api/', {
+  fetch('https://jsonplaceholder.typicode.com/posts', {
     method: 'GET'
-  })
+  }).then((serialize) => (serialize.json()))
 )

@@ -1,51 +1,45 @@
 import React from 'react';
-import { Text, List, ListItem, Body, Button } from 'native-base';
+import { Text, List, ListItem, Body, Left, Icon } from 'native-base';
 import Screen from '../components/Screen';
 import { fetchPosts } from '../apis/postApi';
 
-const renderList = (userList) => (
-  userList.map((user) => (
-    <ListItem>
-      <Body>
-        <Text>{user.id}</Text>
-        <Text>{user.name}</Text>
-      </Body>
-    </ListItem>
-  ))
+class Home extends React.Component {
+  state = {
+    postList: []
+  }
 
-  // fetchPosts().then((response) => (response.json())).then((resp) => (
-  //   <Text>
-  //     {resp.gender}
-  //   </Text>
-  // ))
-)
+  componentDidMount() {
+    this.renderList();
+  }
 
-const Home = () => {
-  const userList = [
-    {
-      id: 1,
-      name: 'Ali'
-    },
-    {
-      id: 2,
-      name: 'Veli'
-    },
-    {
-      id: 3,
-      name: 'Mehmet'
-    },
-    {
-      id: 4,
-      name: 'Ahmet'
-    }
-  ];
+  renderList = () => {
+    fetchPosts().then((response) => {
+      this.setState({
+        postList: response
+      })
+    });
+  }
 
-  return (
-    <Screen hasBackButton>
-      <Text>HOME MODULE</Text>
-      <List>{renderList(userList)}</List>
-    </Screen>
-  )
+  render() {
+    return (
+      <Screen hasBackButton>
+        <Text>HOME MODULE</Text>
+        <List>
+          {this.state.postList && this.state.postList.map((post, index) => (
+            <ListItem key={index}>
+              <Left>
+                <Icon type="FontAwesome" name="paw" />
+                <Text>{post.id}</Text>
+              </Left>
+              <Body>
+                <Text>{post.title}</Text>
+                <Text note numberOfLines={1}>{post.body}</Text>
+              </Body>
+            </ListItem>
+          ))}
+        </List>
+      </Screen>
+    )
+  }
 }
-
 export default Home;
